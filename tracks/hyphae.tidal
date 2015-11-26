@@ -1,0 +1,35 @@
+cps (130 / 3 / 60)
+
+-- noise backdrop
+d1 $ (smash 2 [1,4,8] $ gap 8 $ sound "ps2:2")
+  # cut "1"
+  # speed "1"
+  # shape "0.9"
+  # gain (slow 4 $ scale 0.5 0.7 sine1)
+  # delay "0.5" # delaytime "0.5" # delayfeedback "0.4"
+  # pan (slow 8 $ scale 0.2 0.8 sine1)
+
+-- sample playback (highs + panned mids, softer)
+d2 $ stack [
+  slow 6 $ sound "ps2:0"
+    # gain "1"
+  ,
+  slow 6 $ sound "ps2:1"
+    # gain "0.5"
+    # pan (slow 2 $ scale 0.8 0.2 sine1)
+]
+
+-- drums
+d3 $ stack [
+  sound "{[bd:5]}%2" # gain "1.2"
+  ,
+  every 6 (density 2) $ every 3 ((2/3) <~) $ sound "~ [can:2] birds3:0" # gain "2"
+  ,
+  every 6 (density 2) $ sound "metal*6"
+    # gain (slow 3 $ scale 0.6 1 sine1)
+    # shape (slow 6 $ scale 0.1 0.6 sine1)
+    # pan (density 32 $ "0.2 0.8")
+    # speed ("[1 2]/6")
+]
+
+hush

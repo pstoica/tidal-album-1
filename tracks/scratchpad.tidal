@@ -1,0 +1,23 @@
+-- hyphae
+
+-- gradually change beginning of sample playback
+d1 $ stack [
+slow 0.1
+  $ sound "ps2:1"
+  # begin (slow 16 $ scale 0.75 0.55 sine1)
+  # cut "1" # speed "0.5"
+]
+
+-- more sample stutter
+d2 $ slow 6 $ striateL' 6 (1/32) 6 $ sound "ps2:1" # shape "0.8" # gain "0.8" # pan "0.3"
+
+d1 $ silence
+
+-- drums with stutter
+d3 $ stack [
+  sound "{bd}%2" # gain "1"
+  ,
+  striate' 2 (1/2) $ sound "{hc:1*3}%2" # gain (scale 0.4 1 sinewave1)
+]
+
+hush

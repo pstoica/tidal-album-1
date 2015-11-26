@@ -1,0 +1,9 @@
+-- midi stuff
+import Sound.Tidal.MIDI.Output
+
+-- all MIDI flows through the Analog RYTM
+import Sound.Tidal.SimpleSynth
+import Sound.Tidal.VolcaBass
+
+keyStreams <- midiproxy 1 "IAC Driver Bus 1" [(keys, 1), (keys, 2), (keys, 3)]
+[k1,k2,k3,k4] <- sequence keyStreams

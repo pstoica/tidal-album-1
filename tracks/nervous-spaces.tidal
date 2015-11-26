@@ -1,0 +1,38 @@
+cps 0.53
+
+d1 $ stack [
+  striate' 8 (1/8) $ sound "ps1:3" # speed "1" # shape "0.6" # gain (slow 4 $ scale 0.4 1 sine1) # pan (scale 0.6 0.4 $ sinewave1),
+  striate 36 $ sound "ps1:3" # speed "4" # begin "0.4" # end "1" # crush "8" # gain (scale 0.8 1.2 sine1) # pan (slow 2 $ scale 0.3 0.7 $ sinewave1)
+]
+
+d2 $
+slow 2 $
+sound "ps1:2" #
+speed "0.5" #
+begin "0.25" #
+end (slow 4 $ scale 0.28 0.30 sine1) #
+crush "6" #
+gain "1.6"
+
+d3 $ stack [
+  striate 36 $
+  sound "ps1:1" #
+  gain (slow 4 $ scale 0.4 1.1 sine1) #
+  shape "0.8" # speed "0.5"
+]
+
+d4 $ stack [
+  slow 2 $ sound "[bd:1*6, ~*5 sn:2]" # gain "1.5",
+  sound "[hc:7*12]" #
+  gain (slow 4 $ scale 0.4 1 sine1) #
+  pan (scale 0 0.5 sine1) #
+  delay "0.1" # delayfeedback "0.2",
+  sound "[hc:6*12]" #
+  gain "0.8" #
+  delay (slow 2 $ scale 0.2 0.4 sine1) #
+  delayfeedback (slow 8 $ scale 0.2 0.5 sine1) #
+  pan (slow 4 $ scale 0.5 0.6 sine1),
+  slow 2 $ sound "~ sn:1*4" # gain "1.2" # shape "0.1"
+]
+
+hush
